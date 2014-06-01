@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @raiting = %W[G PG PG-13 NC-17 R]
+    @all_ratings = %W[G PG PG-13 NC-17 R]
     
     if params[:movies_sort] == "by_title"
       @movies = sort_title

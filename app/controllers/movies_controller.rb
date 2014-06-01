@@ -1,7 +1,13 @@
 class MoviesController < ApplicationController
-
+  #helper_method :sort_title, :sort_release
   def index
-    @movies = Movie.all
+    @raiting = %W[G PG PG-13 NC-17 R]
+    if params[:movies_sort] == "by_title"
+      @movies = sort_title
+    elsif params[:movies_sort] == "by_release"
+      @movies = sort_release
+    else @movies = Movie.all
+    end  
   end
 
   def show
@@ -51,6 +57,14 @@ class MoviesController < ApplicationController
 
   def movie_params
     params[:movie].permit(:title, :rating, :release_date, :description)
+  end
+
+  def sort_title
+    Movie.order(:title)
+  end
+
+  def sort_release
+    Movie.order(:release_date)
   end
 
 end

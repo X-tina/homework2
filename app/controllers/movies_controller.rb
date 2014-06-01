@@ -1,11 +1,14 @@
 class MoviesController < ApplicationController
-  #helper_method :sort_title, :sort_release
+
   def index
     @raiting = %W[G PG PG-13 NC-17 R]
+    
     if params[:movies_sort] == "by_title"
       @movies = sort_title
+      @change_color_title = "highlight"
     elsif params[:movies_sort] == "by_release"
       @movies = sort_release
+      @change_color_release = "highlight"
     else @movies = Movie.all
     end  
   end
@@ -68,4 +71,3 @@ class MoviesController < ApplicationController
   end
 
 end
-

@@ -11,6 +11,12 @@ class MoviesController < ApplicationController
        @selected_ratings = @all_ratings
      end
     @movies = Movie.order(params[:movies_sort]).where(:rating => @selected_ratings)
+    if (params[:movies_sort] == "title")
+      @change_color_title = "highlight"
+    elsif (params[:movies_sort] == "release_date")
+      @change_color_release = "highlight"
+    end
+
   end
 
   def show

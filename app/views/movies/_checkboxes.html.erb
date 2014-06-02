@@ -2,7 +2,7 @@
   Include:
   <% @all_ratings.each do |rating| %>
     <%= rating %>
-    <%= check_box_tag "ratings[#{rating}]", 'checked', true %>
+    <%= check_box_tag "ratings[#{rating}]", '1', (@selected_ratings.include?(rating)) %>
     <% end %>
   <%= submit_tag 'Refresh' %>
 <% end %>

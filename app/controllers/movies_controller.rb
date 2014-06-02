@@ -1,16 +1,16 @@
 class MoviesController < ApplicationController
 
   def index
-    @all_ratings = %W[G PG PG-13 NC-17 R]
-    
-    if params[:movies_sort] == "by_title"
-      @movies = sort_title
-      @change_color_title = "highlight"
-    elsif params[:movies_sort] == "by_release"
-      @movies = sort_release
-      @change_color_release = "highlight"
-    else @movies = Movie.all
-    end  
+     @all_ratings = Movie.all_ratings
+     @selected_ratings = []
+     if !params[:ratings].nil?
+       params[:ratings].each_key do |key|
+         @selected_ratings << key
+       end
+     elsif
+       @selected_ratings = @all_ratings
+     end
+    @movies = Movie.order(params[:movies_sort]).where(:rating => @selected_ratings)
   end
 
   def show
@@ -60,14 +60,6 @@ class MoviesController < ApplicationController
 
   def movie_params
     params[:movie].permit(:title, :rating, :release_date, :description)
-  end
-
-  def sort_title
-    Movie.order(:title)
-  end
-
-  def sort_release
-    Movie.order(:release_date)
   end
 
 end

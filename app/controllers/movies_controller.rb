@@ -3,8 +3,16 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
     @selected_ratings = []
-    @selected_ratings = params[:ratings].present? ? params[:ratings].keys : @all_ratings
-    @movies = Movie.order(params[:movies_sort]).where(:rating => @selected_ratings)
+    session[:filters] = {}
+
+    @movies_sort = params[:movies_sort]
+    @movies_ratings = params[:ratings]
+
+    @selected_ratings = @movies_ratings.present? ? @movies_ratings.keys : @all_ratings
+    @movies = Movie.order(@movies_sort).where(:rating => @selected_ratings)
+    
+    session[:filters].merge!(movies_sort: @movies_sort) if(@movies_sort.present?)
+    session[:filters].merge!(ratings: @movies_ratings) if(@movies_ratings.present?)
   end
 
   def show

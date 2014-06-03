@@ -4,9 +4,13 @@
 <table id="movies">
   <thead>
     <tr>
-      <th class = "<%= @change_color_title %>" > <%= link_to "Movie Title", movies_path(movies_sort: :title) %>  </th>
+      <th class = "<%= params[:movies_sort] == 'title' ? 'highlight' : '' %>">
+        <%= link_to "Movie Title", movies_path(movies_sort: 'title', ratings: params[:ratings]) %>
+      </th>
       <th>Rating</th>
-      <th class = "<%= @change_color_release %>" >  <%= link_to "Release Date", movies_path(movies_sort: :release_date) %></th>
+      <th class = "<%= params[:movies_sort] == 'release_date' ? 'highlight' : '' %>" >
+        <%= link_to "Release Date", movies_path(movies_sort: 'release_date', ratings: params[:ratings]) %>
+      </th>
       <th>More Info</th>
     </tr>
   </thead>

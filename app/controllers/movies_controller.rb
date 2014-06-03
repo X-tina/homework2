@@ -1,22 +1,10 @@
 class MoviesController < ApplicationController
 
   def index
-     @all_ratings = Movie.all_ratings
-     @selected_ratings = []
-     if !params[:ratings].nil?
-       params[:ratings].each_key do |key|
-         @selected_ratings << key
-       end
-     elsif
-       @selected_ratings = @all_ratings
-     end
+    @all_ratings = Movie.all_ratings
+    @selected_ratings = []
+    @selected_ratings = params[:ratings].present? ? params[:ratings].keys : @all_ratings
     @movies = Movie.order(params[:movies_sort]).where(:rating => @selected_ratings)
-    if (params[:movies_sort] == "title")
-      @change_color_title = "highlight"
-    elsif (params[:movies_sort] == "release_date")
-      @change_color_release = "highlight"
-    end
-
   end
 
   def show

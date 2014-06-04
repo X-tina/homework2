@@ -5,11 +5,11 @@
   <thead>
     <tr>
       <th class = "<%= 'highlight' if session[:movies_sort] == 'title' %>">
-        <%= link_to "Movie Title", movies_path(movies_sort: 'title') %>
+        <%= sortable params[:movies_sort], movies_path(movies_sort: 'title') %>
       </th>
       <th>Rating</th>
       <th class = "<%= 'highlight' if session[:movies_sort] == 'release_date' %>" >
-        <%= link_to "Release Date", movies_path(movies_sort: 'release_date') %>
+        <%= sortable params[:movies_sort], movies_path(movies_sort: 'release_date') %>
       </th>
       <th>More Info</th>
     </tr>

@@ -1,15 +1,14 @@
 <%= render 'checkboxes' %>
 <h1>All Movies</h1>
-
 <table id="movies">
   <thead>
     <tr>
       <th class = "<%= 'highlight' if session[:movies_sort] == 'title' %>">
-        <%= sortable params[:movies_sort], movies_path(movies_sort: 'title') %>
+        <%= sortable 'title', "Movie title" %>
       </th>
       <th>Rating</th>
       <th class = "<%= 'highlight' if session[:movies_sort] == 'release_date' %>" >
-        <%= sortable params[:movies_sort], movies_path(movies_sort: 'release_date') %>
+        <%= sortable 'release_date', "Release date" %>
       </th>
       <th>More Info</th>
     </tr>

@@ -10,12 +10,15 @@
   <%= f.text_field :title %>
 
   <%= f.label :rating %>
-  <%= f.text_field :rating %>
+  <%= f.text_field :rating, size: "5" %>
 
   <%= f.label :release_date %>
   <%= f.text_field :release_date %>
 
-  <%= f.submit "Submit" %>
+  <%= f.label :description %>
+  <%= f.text_area :description, :cols => "30", :rows => "10" %>
+
+  <p><%= f.submit "Submit" %></p>
 <% end %>
 
 <%= link_to "Back to movie list", movies_path %>

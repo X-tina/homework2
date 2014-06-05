@@ -15,6 +15,7 @@ a {
   color: maroon;
   text-decoration: underline;
   font-weight: bold;
+  font-size: 10px;
 }
 h1 {
   color: maroon;
@@ -69,4 +70,7 @@ table#movies .list_line_even {
 
 table#movies .list_line_odd {
   background: Cornsilk;
+}
+p.description {
+  
 }

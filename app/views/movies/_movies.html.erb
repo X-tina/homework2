@@ -1,5 +1,5 @@
 <% movies.each do |movie| %>
-  <tr>
+  <tr class = "<%= cycle('list_line_odd', 'list_line_even') %>">
     <td><%= movie.title %></td>
     <td><%= movie.rating %></td>
     <td><%= movie.release_date %></td>

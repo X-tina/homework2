@@ -62,3 +62,11 @@ form label {
   font-weight: bold;
   color: maroon;
 }
+
+table#movies .list_line_even {
+  background: AntiqueWhite;
+}
+
+table#movies .list_line_odd {
+  background: Cornsilk;
+}

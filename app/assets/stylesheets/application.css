@@ -50,7 +50,7 @@ table#movies th, table#movies td {
   text-align: left;
 }
 table#movies th.highlight {
-  background-color: yellow;
+  background-color: PeachPuff;
 }
 #notice #warning {
   background: rosybrown;

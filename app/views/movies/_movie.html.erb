@@ -2,11 +2,11 @@
 
 <ul id="details">
   <li>Rating: <%= movie.rating %></li>
+  <li>Rating: <%= select_tag(movie.rating, options_for_select(Movie.all_ratings)) %></li>
   <li>Released on: <%= movie.release_date %></li>
 </ul>
 
 <h3>Description</h3>
-
 
 <p class="description">
 	<%= movie.description %>

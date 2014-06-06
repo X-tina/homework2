@@ -72,5 +72,7 @@ table#movies .list_line_odd {
   background: Cornsilk;
 }
 p.description {
-  
+  padding-right: 1000px;
+  text-align: justify;
+
 }

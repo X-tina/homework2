@@ -1,6 +1,6 @@
 <% movies.each do |movie| %>
   <tr class = "<%= cycle('list_line_odd', 'list_line_even') %>">
-    <td><%= movie.title %></td>
+    <td><%= link_to movie.title, movie_path(movie) %></td>
     <td><%= movie.rating %></td>
     <td><%= movie.release_date %></td>
     <td><%= truncate(movie.description, length: 20) %>

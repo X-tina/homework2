@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
     session[:movies_sort] = params[:movies_sort] if params[:movies_sort]
     session[:ratings] = params[:ratings] if params[:ratings]
 
-
     @selected_ratings = @movies_ratings.present? ? @movies_ratings.keys : @all_ratings
     @movies = Movie.list(rating: ratings_params.keys,order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
   end

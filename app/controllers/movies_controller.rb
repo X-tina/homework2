@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     session[:ratings] = params[:ratings] if params[:ratings]
 
     @selected_ratings = @movies_ratings.present? ? @movies_ratings.keys : @all_ratings
-    @movies = Movie.list(rating: ratings_params.keys,order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
+    @movies = Movie.list(rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
   end
 
   def show

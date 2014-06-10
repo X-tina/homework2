@@ -31,9 +31,19 @@ describe Movie do
      it 'should odered just by one rating' do
       expect(Movie.list(rating: ['G'])).to eq([first_movie])
      end
+     
+     let(:third_movie) { Movie.create!(title: "cccc", rating: "G", release_date: Date.today) }
 
      it 'should odered by rating and by title asc' do
-       expect(Movie.list(rating: ['G'], odere: 'title asc')).to eq([first_movie])
+       expect(Movie.list(rating: ['G'], odere: 'title asc')).to eq([first_movie, third_movie])
+     end
+
+     it 'should odered by rating and by title desc' do
+       expect(Movie.list(rating: ['G'], order: 'title desc')).to eq([third_movie, first_movie])
+     end
+
+     it 'is nothing to show if all ratings are disabled' do
+       expect(Movie.list(rating: [])).to eq([])
      end
   end
 

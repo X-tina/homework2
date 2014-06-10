@@ -3,34 +3,38 @@ require 'spec_helper'
 describe Movie do
 
   describe '.all_ratings' do
-    it 'No movies - no ratings' do
-      expect(Movie.all_ratings.clear).to eq([])
-    end
-   
-    it 'No duplicates' do
-      Movie.create(title: 'aaa', rating: 'PG', release_date: Date.today)
-      Movie.create(title: 'aaa', rating: 'PG', release_date: Date.today)  
-      expect(Movie.all.where('rating' == 'PG').count).to eq(1)
-    end
-
-    it ' has no blank ratings' do
-      Movie.create(title: 'aaa', rating: ' ', release_date: Date.today)
-      expect(Movie.where('title' == 'aaa')).to raise_error()
-    end
-
     it 'has only default ratings' do
       expect(Movie.all_ratings).to eq(%W[G PG PG-13 NC-17 R])
     end
   end
 
   describe '.list' do
+     let(:first_movie)  { Movie.create!(title: "bbbbbbbb", rating: 'G', release_date: Date.today - 1.week) }
+     let(:second_movie) { Movie.create!(title: "aaaaaaaa", rating: 'R', release_date: Date.today) }
     
-    let (:first_movie)  { Movie.create(title: "First movie", rating: 'R', release_date: Date.today - 1.week) }
-    let (:second_movie) { Movie.create(title: "Another movie", rating: 'R', release_date: Date.today) }
-    
-    it 'should odered by the ascending title' do
-      Movie.list(order: ("title asc")).to eq [second_movie, first_movie]     
-    end
+     it 'should odered by the ascending title' do
+       expect(Movie.list(order: 'title asc')).to eq([second_movie, first_movie])
+     end
+
+     it 'should odered ty tne descending title' do
+       expect(Movie.list(order: 'title desc')).to eq([first_movie, second_movie])
+     end
+
+     it 'should odered by the release_date' do
+       expect(Movie.list(order: 'release_date asc')).to eq([first_movie, second_movie])
+     end
+
+     it 'shouls odered by all ratings' do
+       expect(Movie.list(odere: ['G', 'R'])).to eq([first_movie, second_movie])
+     end
+
+     it 'should odered just by one rating' do
+      expect(Movie.list(rating: ['G'])).to eq([first_movie])
+     end
+
+     it 'should odered by rating and by title asc' do
+       expect(Movie.list(rating: ['G'], odere: 'title asc')).to eq([first_movie])
+     end
   end
 
 end

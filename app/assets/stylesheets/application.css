@@ -80,4 +80,5 @@ p.description {
 .authenticate {
   float:right;
   margin-right: 20px;
+  font-size: larger;
 }

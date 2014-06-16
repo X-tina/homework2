@@ -76,3 +76,8 @@ p.description {
   text-align: justify;
 
 }
+
+.authenticate {
+  float:right;
+  margin-right: 20px;
+}

@@ -30,5 +30,4 @@ group :development do
 end
 
 gem 'capybara'
-gem 'devise'
-
+gem 'devise', '~> 3.0'

@@ -50,6 +50,8 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie = find_movie
+    @movie.avatar = nil
+    @movie.save
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_url
@@ -62,7 +64,7 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params[:movie].permit(:title, :rating, :release_date, :description)
+    params[:movie].permit(:title, :rating, :release_date, :description, :avatar)
   end
 
   def ratings_params

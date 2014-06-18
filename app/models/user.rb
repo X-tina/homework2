@@ -8,8 +8,4 @@ class User < ActiveRecord::Base
     email.split('@').first
   end
 
-  def admin?
-  	false
-  end
-
 end

@@ -22,6 +22,7 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    authorize @movie, :create?
   end
 
   def create

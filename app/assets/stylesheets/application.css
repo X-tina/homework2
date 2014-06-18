@@ -1,3 +1,4 @@
+
 html, body {
   margin: 0;
   padding: 0;
@@ -15,7 +16,7 @@ a {
   color: maroon;
   text-decoration: underline;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 15px;
 }
 h1 {
   color: maroon;
@@ -25,6 +26,10 @@ h1 {
   width: 100%;
   border-bottom: 1px solid DarkSlateGrey;
 }
+.title {
+  font-size: 2em;
+}
+
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
@@ -33,6 +38,7 @@ h1.title {
   border-bottom: 4px solid gold;
   font-size: 2em;
   font-style: normal;
+
 }
 table#movies {
   margin: 10px;

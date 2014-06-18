@@ -26,6 +26,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new movie_params
+    authorize @movie
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
       redirect_to movies_url

@@ -9,7 +9,8 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.file_field @movie.avatar.url %>
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
 
   <%= f.label :ratings %>
   <%= f.select :rating, options_for_select(Movie.all_ratings), :include_blank => false %>

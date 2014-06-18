@@ -31,4 +31,5 @@ end
 
 gem 'capybara'
 gem 'devise', '~> 3.0'
-gem "paperclip", "~> 4.1"
+gem 'paperclip', '~> 4.1'
+gem 'pundit'

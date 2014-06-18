@@ -1,4 +1,7 @@
 class Movie < ActiveRecord::Base
+
+  belongs_to :user
+
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.jpeg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar,
@@ -18,4 +21,5 @@ class Movie < ActiveRecord::Base
     res = res.order(options[:order]) if options.key? :order
     res
   }
+
 end

@@ -13,3 +13,11 @@
 ].each do |(title, rating, date)|
   Movie.create! title: title, rating: rating, release_date: DateTime.parse(date), description: description
 end
+
+[
+  ["123@mail.ru", "12345678", false]
+  ["user@mail.ru", "12345678", false]
+  ["admin", "12345678", true]
+].each do |email, password, admin|
+ User.create! email: email, password: password, admin: admin
+end

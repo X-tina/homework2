@@ -10,14 +10,14 @@
   ["The Incredibles", "PG", "2004-11-05 00:00:00 UTC"],
   ["Raiders of the Lost Ark", "PG", "1981-06-12 00:00:00"],
   ["Chicken Run", "G", "2000-06-21 00:00:00"]
-].each do |(title, rating, date)|
+].each do |(title, rating, date, description)|
   Movie.create! title: title, rating: rating, release_date: DateTime.parse(date), description: description
 end
 
 [
-  ["123@mail.ru", "12345678", false]
-  ["user@mail.ru", "12345678", false]
+  ["123@mail.ru", "12345678", false],
+  ["user@mail.ru", "12345678", false],
   ["admin", "12345678", true]
-].each do |email, password, admin|
+].each do |(email, password, admin)|
  User.create! email: email, password: password, admin: admin
 end

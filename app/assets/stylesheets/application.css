@@ -16,8 +16,13 @@ a {
   color: maroon;
   text-decoration: underline;
   font-weight: bold;
-  font-size: 15px;
+  font-size: small;
 }
+
+a:hover {
+    color: Chocolate;
+  }
+
 h1 {
   color: maroon;
   font-size: 150%;

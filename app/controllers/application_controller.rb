@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def permission_denied!(ex)
-  	flash[:alert] = "You are not allowed!"
-  	redirect_to root_url
+    flash[:alert] = "You are not allowed!"
+    redirect_to root_url
   end
 
 end

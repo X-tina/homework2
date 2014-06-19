@@ -22,12 +22,13 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
-    authorize @movie
+    #authorize @movie
   end
 
   def create
     @movie = Movie.new movie_params
-    authorize @movie
+    @movie.user = current_user
+    #authorize @movie
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
       redirect_to movies_url
@@ -59,6 +60,10 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_url
+  end
+
+  def author?(movie)
+    movie.user_id == current_user?
   end
 
   private

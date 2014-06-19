@@ -11,5 +11,8 @@
 <h3>Description</h3>
 
 <p class="description">
-	<%= movie.description %>
+  <%= movie.description %>
 </p>
+
+<p> Added by: <%= author(movie) %> </p>
+<p> Last sign in: <%= movie.user.last_sign_in_at %></p>

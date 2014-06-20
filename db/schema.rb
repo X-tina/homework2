@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618193524) do
+ActiveRecord::Schema.define(version: 20140620070533) do
 
   create_table "movies", force: true do |t|
     t.string   "title"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140618193524) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "user_id"
+    t.boolean  "published",           default: false
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id"

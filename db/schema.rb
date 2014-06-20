@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20140620070533) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "user_id"
     t.boolean  "published",           default: false
+    t.integer  "user_id"
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id"
@@ -48,5 +48,4 @@ ActiveRecord::Schema.define(version: 20140620070533) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
 end

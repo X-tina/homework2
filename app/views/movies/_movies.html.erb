@@ -5,5 +5,6 @@
     <td><%= movie.release_date %></td>
     <td><%= truncate(movie.description, length: 20) %>
     <%= link_to "more...", movie %></td>
+    <td> <%= movie.published %></td>
   </tr>
 <% end %>

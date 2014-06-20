@@ -39,12 +39,13 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = find_movie
-    authorize @movie
+    #authorize @movie
   end
 
   def update
     @movie = find_movie
     authorize @movie
+    @movie.published = false
     if @movie.update_attributes(movie_params)
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
@@ -66,6 +67,17 @@ class MoviesController < ApplicationController
     movie.user_id == current_user?
   end
 
+  def publish
+    @movie = find_movie
+    #authorize @movie
+    @movie.published = true
+    if @movie.save
+      redirect_to movies_url
+    else
+      flash[:notice] = "Movie '#{@movie.title}' can't be published"
+    end
+  end
+
   private
 
   def allow
@@ -77,7 +89,7 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params[:movie].permit(:title, :rating, :release_date, :description, :avatar)
+    params[:movie].permit(:title, :rating, :release_date, :description, :avatar, :publish)
   end
 
   def ratings_params

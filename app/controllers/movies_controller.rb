@@ -13,7 +13,8 @@ class MoviesController < ApplicationController
     session[:ratings] = params[:ratings] if params[:ratings]
 
     @selected_ratings = @movies_ratings.present? ? @movies_ratings.keys : @all_ratings
-    @movies = Movie.list(rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
+    movie_list = Movie.list(rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
+    @movies = policy_scope(movie_list)
   end
 
   def show
@@ -39,7 +40,7 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = find_movie
-    #authorize @movie
+    authorize @movie
   end
 
   def update
@@ -69,7 +70,7 @@ class MoviesController < ApplicationController
 
   def publish
     @movie = find_movie
-    #authorize @movie
+    authorize @movie
     @movie.published = true
     if @movie.save
       redirect_to movies_url

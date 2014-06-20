@@ -1,4 +1,15 @@
 class MoviePolicy < Struct.new(:user, :movie)
+  class Scope < Struct.new(:user, :scope)
+    
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.where(:published => true)
+      end
+    end
+
+  end
 
   def create?
     user.admin?
@@ -9,7 +20,7 @@ class MoviePolicy < Struct.new(:user, :movie)
   end
 
   def update?
-    user.admin? || user == movie.user
+    user.admin? || !movie.published?
   end
 
   alias_method :edit?, :update?

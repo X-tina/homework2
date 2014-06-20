@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
     session[:ratings] = params[:ratings] if params[:ratings]
 
     @selected_ratings = @movies_ratings.present? ? @movies_ratings.keys : @all_ratings
+
     movie_list = Movie.list(rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
     @movies = policy_scope(movie_list)
   end

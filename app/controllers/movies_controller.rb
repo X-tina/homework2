@@ -24,13 +24,11 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
-    #authorize @movie
   end
 
   def create
     @movie = Movie.new movie_params
     @movie.user = current_user
-    #authorize @movie
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
       redirect_to movies_url
@@ -71,7 +69,7 @@ class MoviesController < ApplicationController
 
   def publish
     @movie = find_movie
-    authorize @movie
+    #authorize @movie
     @movie.published = true
     if @movie.save
       redirect_to movies_url
@@ -91,7 +89,9 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params[:movie].permit(:title, :rating, :release_date, :description, :avatar, :publish)
+    fields = [:title, :rating, :release_date, :description, :avatar, :description]
+    fields << :published if current_user.admin?
+    params.require(:movie).permit(fields)
   end
 
   def ratings_params

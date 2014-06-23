@@ -45,8 +45,13 @@ class MoviesController < ApplicationController
   def update
     @movie = find_movie
     authorize @movie
-    @movie.published = false
-    if @movie.update_attributes(movie_params)
+    @movie.attributes = movie_params
+    if @movie.valid?
+      unless @movie.published?
+        Movie.create! Movie.find(@movie.id).attributes.except('id', 'created_at', 'updated_at')
+        @movie.published = true
+      end
+      @movie.save
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
     else
@@ -69,13 +74,9 @@ class MoviesController < ApplicationController
 
   def publish
     @movie = find_movie
-    #authorize @movie
-    @movie.published = true
-    if @movie.save
-      redirect_to movies_url
-    else
-      flash[:notice] = "Movie '#{@movie.title}' can't be published"
-    end
+    authorize @movie, :update?
+    @movie.update_column :published, false
+    redirect_to @movie
   end
 
   private

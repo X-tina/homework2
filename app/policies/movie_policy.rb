@@ -5,7 +5,7 @@ class MoviePolicy < Struct.new(:user, :movie)
       if user.admin?
         scope.all
       else
-        scope.where(:published => true)
+        scope.where('published = :p OR user_id = :u', p: false, u: user.id)
       end
     end
 

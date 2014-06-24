@@ -5,7 +5,10 @@ class MoviePolicy < Struct.new(:user, :movie)
       if user.admin?
         scope.all
       else
-        scope.where('published = :p OR user_id = :u', p: false, u: user.id)
+        #scope.where('published = :p OR user_id = :u', p: false, u: user.id)
+        scope.where(
+          'twin_id IN (select m.twin_id from movies m group by m.twin_id having COUNT(m.id) > 1)'
+        )
       end
     end
 
